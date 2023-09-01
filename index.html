@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PilotCreative</title>
+   
+    <link rel="prefetch" href="/imgs/Assassins-Creed.webp" />
+    <link rel="prefetch" href="/imgs/Fallout.webp" />
+    <link rel="prefetch" href="/imgs/Nintendo-DSiXL.webp" />
+    <link rel="prefetch" href="/imgs/Annalise.webp" />
+    <link rel="prefetch" href="/imgs/Annalise-Hero.webp" />
+    <link rel="prefetch" href="/imgs/Audio-Player.webp" />
+    <link rel="prefetch" href="/imgs/Mobile-Audio-Player.webp" />
+    <link rel="prefetch" href="/imgs/desktop.webp" />
+    <link rel="prefetch" href="/imgs/Map-Finder.webp" />
+    <link rel="prefetch" href="/imgs/Data-Table.webp" />
+    <link rel="prefetch" href="/imgs/Pro-Player.webp" />
+    <link rel="prefetch" href="/imgs/BKG-Website.webp" />
+    <link rel="prefetch" href="/imgs/Busted-Knuckle-Garage.webp" />
+    <link rel="prefetch" href="/imgs/Grace-Creative.webp" />
+    <link rel="prefetch" href="/imgs/World-Of-Warcraft.webp" />
+    <link rel="prefetch" href="/imgs/Call-Of-Duty.webp" />
+    <link rel="prefetch" href="/imgs/Nationwide-Banner.webp" />
+    <link rel="prefetch" href="/imgs/Nationwide.webp" />
+    <link rel="prefetch" href="/imgs/Flat-Accordian.webp" />
+    <link rel="prefetch" href="/imgs/Light-Accordian.webp" />
+    <link rel="prefetch" href="/imgs/Dark-Accordian.webp" />
+    <link rel="prefetch" href="/imgs/ThinkSmart.webp" />
+    <link rel="prefetch" href="/imgs/ThinkSmart-FB.webp" />
+    <link rel="prefetch" href="/imgs/Ignifit.webp" />
+    <link rel="prefetch" href="/imgs/Pilot-Blasting.webp" />
+    <link rel="prefetch" href="/imgs/PR-Volt.webp" />
+    <link rel="prefetch" href="/imgs/Zan-Gracie.webp" />
+    <link rel="prefetch" href="/imgs/Html5.webp" />
+    <link rel="prefetch" href="/imgs/Xbox-Kinect.webp" />
+    
+
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            outline: none;
+            margin: 0;
+            border: none;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background: transparent;
+        }
+
+        body {
+            height: 100vh;
+            background: url('data:image/webp;base64,UklGRjoAAABXRUJQVlA4WAoAAAAgAAAADwAADwAAVlA4IBwAAAAwAQCdASoQABAAAcAuJaQAA3AA/vnouf/pdAAA');
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .ruler {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top: 1px solid rgb(70, 70, 70);
+            border-bottom: 1px solid rgb(70, 70, 70);
+            min-height: 30px;
+            background: rgb(45, 45, 45);
+        }
+
+        .ruler li {
+            list-style-type: none;
+            font-size: 14px;
+            color: rgba(255, 255, 255, .25);
+            text-align: center;
+            min-width: 100px;
+        }
+
+        img {
+            cursor: pointer;
+            /*border: 1px solid rgb(50, 50, 50);*/
+            max-width: 100%;
+            max-height: 100%;
+            /*box-shadow: 10px 20px 0 0 rgba(0, 0, 0, .25);*/
+        }
+
+        .design {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 100%;
+            height: calc(100vh - 80px);
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            column-gap: 4px;
+            border-top: 1px solid rgb(70, 70, 70);
+            border-bottom: 1px solid rgb(70, 70, 70);
+            width: 100%;
+        }
+
+        .controls li {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            list-style-type: none;
+            font-size: 30px;
+            width: 100%;
+            height: 28px;
+            background: rgb(45, 45, 45);
+        }
+
+        .controls li:first-of-type {
+            border-right: 1px solid rgb(70, 70, 70);
+        }
+
+        .controls li:last-of-type {
+            border-left: 1px solid rgb(70, 70, 70);
+        }
+
+        .controls li:hover {
+            background: rgb(55, 55, 55);
+        }
+
+        .controls li:active {
+            background: rgb(55, 80, 100);
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <ul class="ruler"></ul>
+        <div class="design">
+            <img alt="Design" />
+        </div>
+        <ul class="controls">
+            <li title="Prev">&lsaquo;</li>
+            <li title="Next">&rsaquo;</li>
+        </ul>
+    </main>
+    <script>
+        const
+            ruler = document.querySelector('.ruler'),
+            links = document.querySelectorAll('[rel="prefetch"]'),
+            designs = [],
+            design = document.querySelector('img'),
+            prev = document.querySelector('[title="Prev"]'),
+            next = document.querySelector('[title="Next"]');
+
+        for (let tick = -900; tick < 1000; tick += 100) {
+            const li = document.createElement('li');
+            li.innerHTML = tick;
+            ruler.appendChild(li);
+        }
+
+        links.forEach(link => {
+            designs.push(link.attributes[1].nodeValue);
+        });
+
+        design.src = designs[0];
+
+        let index = 0;
+
+        function clicked(event) {
+            event.target.attributes[0].nodeValue === 'Next' ? index == designs.length - 1 ? index = 0 : index += 1 : index == 0 ? index = designs.length - 1 : index -= 1;
+            design.src = designs[index];
+        }
+
+        prev.addEventListener('click', clicked);
+        next.addEventListener('click', clicked);
+        design.addEventListener('click', function () {
+            next.dispatchEvent(new MouseEvent('click'));
+        });
+    </script>
+</body>
+
+</html>
