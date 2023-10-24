@@ -35,7 +35,7 @@
     <link rel="prefetch" href="/Zan-Gracie.webp" />
     <link rel="prefetch" href="/Html5.webp" />
     <link rel="prefetch" href="/Xbox-Kinect.webp" />
-    
+
 
     <style>
         :root {
@@ -90,10 +90,8 @@
 
         img {
             cursor: pointer;
-            /*border: 1px solid rgb(50, 50, 50);*/
             max-width: 100%;
             max-height: 100%;
-            /*box-shadow: 10px 20px 0 0 rgba(0, 0, 0, .25);*/
         }
 
         .design {
@@ -104,42 +102,26 @@
             height: calc(100vh - 80px);
         }
 
-        .controls {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            column-gap: 4px;
-            border-top: 1px solid rgb(70, 70, 70);
-            border-bottom: 1px solid rgb(70, 70, 70);
-            width: 100%;
+        [title="Prev"] {
+            left: 3vw;
         }
 
-        .controls li {
+        [title="Next"] {
+            right: 3vw
+        }
+
+        [title="Prev"], [title="Next"] {
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            list-style-type: none;
-            font-size: 14px;
-            width: 100%;
-            height: 28px;
-            background: rgb(45, 45, 45);
-        }
-
-        .controls li:first-of-type {
-            border-right: 1px solid rgb(70, 70, 70);
-        }
-
-        .controls li:last-of-type {
-            border-left: 1px solid rgb(70, 70, 70);
-        }
-
-        .controls li:hover {
-            background: rgb(55, 55, 55);
-        }
-
-        .controls li:active {
-            background: rgb(55, 80, 100);
+            border-radius: 100%;
+            top: calc(50vh - 15px);
+            position: absolute;
+            border: 1px solid rgb(70,70,70);
+            width: 30px;
+            height: 30px;
+            background: rgba(0,0,0,.75);
         }
     </style>
 </head>
@@ -150,25 +132,31 @@
         <div class="design">
             <img alt="Design" />
         </div>
-        <ul class="controls">
-            <li title="Prev">< Prev</li>
-            <li title="Next">Next ></li>
-        </ul>
+        <div title="Prev"><</div>
+        <div title="Next">></div>
+        <ul class="ruler"></ul>
     </main>
     <script>
         const
-            ruler = document.querySelector('.ruler'),
+            rulers = document.querySelectorAll('.ruler'),
             links = document.querySelectorAll('[rel="prefetch"]'),
             designs = [],
             design = document.querySelector('img'),
             prev = document.querySelector('[title="Prev"]'),
             next = document.querySelector('[title="Next"]');
 
-        for (let tick = -900; tick < 1000; tick += 100) {
-            const li = document.createElement('li');
-            li.innerHTML = tick;
-            ruler.appendChild(li);
-        }
+
+
+        rulers.forEach(
+            ruler => {
+                for (let tick = -900; tick < 1000; tick += 100) {
+                    const li = document.createElement('li');
+                    li.innerHTML = tick;
+                    ruler.appendChild(li)
+                }
+            }
+        );
+
 
         links.forEach(link => {
             designs.push(link.attributes[1].nodeValue);
